@@ -1,0 +1,231 @@
+body * {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+}
+
+a {
+  color: darkblue;
+  text-decoration:none;
+  /* border-bottom: 1px solid darkblue; */
+}
+
+.navigation {
+  margin-bottom:15px;
+}
+
+form .description-text {
+  font-size:13px;
+  font-weight:600;
+  color: #555;
+  padding-left: 7px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: darkblue;
+  border-bottom: 1px dashed darkblue;
+  margin-right: 8px;
+}
+
+table.index {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  white-space:nowrap;
+}
+
+table.index th {
+  background: #ddd;
+  padding: 3px 5px;
+}
+
+table.index tr:hover td {
+  background: blanchedalmond;
+}
+
+table.index td {
+  background: #eee;
+  padding: 3px 5px;
+  overflow:hidden;
+}
+
+table.index th.id {
+  width: 2%;
+}
+
+table.index th.title {
+  width: 27%;
+}
+
+table.index th.description {
+  width: 36%;
+}
+
+table.index th.author {
+  width: 10%;
+}
+
+table.index th.isbn {
+  width: 9%;
+}
+
+table.index th.year {
+  width: 4%;
+}
+
+table.index th.read-already {
+  width: 7%;
+}
+
+table.index th.actions {
+  width: 5%;
+}
+
+table.index td.title .content,
+table.index td.description .content {
+/*  width:100%;
+  overflow:hidden;
+  white-space:nowrap;*/
+}
+
+table.index td.title,
+table.index td.description {
+  /*width:100%;
+  overflow:hidden;
+  white-space:nowrap;*/
+  text-overflow: ellipsis;
+}
+
+table.index td.author,
+table.index td.isbn,
+table.index td.actions {
+  white-space:nowrap;
+}
+
+table a.read-already {
+  border-bottom: 1px solid;
+}
+
+table a.read-already-false {
+
+}
+
+table a.read-already-true {
+  color:green;
+  font-weight:600;
+}
+
+.clearfix {
+  float: none;
+  clear: both;
+}
+
+/***************************************
+ *
+ */
+
+.messages {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  /*border: 1px solid #ddd;*/
+  /* background: #f8f8f8; */
+  border: 1px solid #ead28b;
+  background: #fffcde;
+}
+
+.error {
+  color:#ff0000;
+}
+
+.confirm-message,
+.confirm-description {
+  margin:20px 0;
+}
+
+/***************************************
+ * Pagination
+ */
+
+ul.pager {
+  padding: 10px;
+  overflow: auto; /* clears float */
+}
+
+ul.pager li {
+  list-style-type: none;
+  float:left;
+  margin-right: 8px;
+}
+
+ul.pager li a {
+  border: 1px solid #ccc;
+  padding: 3px 10px;
+  text-decoration: none;
+}
+
+ul.pager li.active span {
+  border: 2px solid #ccc;
+  padding: 2px 9px;
+  background-color: #ffffda;
+}
+
+li.active span {
+  font-weight:600;
+}
+
+/*****************/
+
+form table tr.read-already td {
+  padding: 10px 0;
+}
+
+form table tr.submit td {
+  padding-top:15px;
+}
+
+/***/
+
+form label {
+  font-weight:600;
+}
+
+.book-form-wrapper,
+.remote-book-wrapper {
+  width: 680px;
+  margin:0 0 20px 0;
+  padding: 10px;
+  border: 2px dotted #cccccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.book-form-wrapper table td {
+  padding: 0 7px;
+}
+
+.remote-book-top-text {
+  padding: 5px 0 10px 0;
+}
+
+.remote-book-bottom-text {
+  padding: 10px 0 5px 0;
+}
+
+.remote-book-bottom-text,
+.remote-book-bottom-text * {
+  font-size: 13px;
+}
+
+.remote-book-bottom-text strong {
+  font-weight: 600;
+}
+
+/*****************/
+
+.bottom-numbers {
+  margin-top: 20px;
+}
