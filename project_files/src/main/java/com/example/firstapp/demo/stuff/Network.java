@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
@@ -49,7 +48,6 @@ public class Network {
     con.setRequestProperty("Accept-Encoding", "gzip, deflate");
     con.setRequestProperty("Accept-Language", "ru");
 
-
     int code = con.getResponseCode();
 
     System.out.println("Network: " + code + " " + con.getResponseMessage());
@@ -82,111 +80,20 @@ public class Network {
     }
 
     StringBuilder sb = new StringBuilder();
-    BufferedReader in = new BufferedReader(new InputStreamReader(cis));
 
-    String inputLine;
-
-    while ((inputLine = in.readLine()) != null) {
-      //System.out.println(inputLine);
-      sb.append(inputLine);
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(cis))) {
+      String inputLine;
+      while ((inputLine = br.readLine()) != null) {
+        //System.out.println(inputLine);
+        sb.append(inputLine);
+      }
     }
 
-    in.close();
+    //System.out.println("Leaner Network class!");
 
     return sb.toString();
 
   }
 
-  //----
-  // This is th initial version
-
-  public static String fetchURLSimple(URL url) throws IOException {
-    //URL obj = new URL(url);
-
-    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-    // optional default is GET
-    // con.setRequestMethod("GET");
-
-    //add request header
-    //con.setRequestProperty("User-Agent", USER_AGENT);
-    con.setRequestProperty("User-Agent", UserAgent());
-
-    StringBuilder sb = new StringBuilder();
-    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-    String inputLine;
-
-    while ((inputLine = in.readLine()) != null) {
-      //System.out.println(inputLine);
-      sb.append(inputLine);
-    }
-
-    in.close();
-
-    return sb.toString();
-
-  }
-
-  //----------------------------------
-
-  public static int downloadFile(String sourceUrl, Path target) throws MalformedURLException, IOException {
-    URL url = new URL(sourceUrl);
-    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
-    con.setRequestProperty("User-Agent", "Mozilla/5.0");
-    con.setRequestProperty("Accept-Encoding", "gzip, deflate");
-    // Accept-Encoding: gzip, deflate
-
-    System.out.println(con.getResponseCode() + " " + con.getResponseMessage());
-    //System.out.println(con.getResponseMessage());
-    System.out.println(con.getContentEncoding());
-    //System.out.println(con.getHeaderField("test"));
-
-    String contentEncoding = con.getContentEncoding();
-    InputStream cis = null;
-
-    int m = 0;
-    try (BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(target));
-         InputStream is = con.getInputStream()) {
-
-      //ByteArrayInputStream bais = new ByteArrayInputStream(is);
-      //InflaterInputStream iis = new InflaterInputStream(is);
-      //GZIPInputStream cis = new GZIPInputStream(is);
-
-      if (contentEncoding == null) {
-        cis = is;
-      } else if (contentEncoding.equals("gzip")) {
-        cis = new GZIPInputStream(is);
-      } else if (contentEncoding.equals("deflate")) {
-        cis = new InflaterInputStream(is);
-      } else {
-        //throw new IOException();
-        throw new UnsupportedEncodingException();
-      }
-
-      //InflaterOutputStream ios = new InflaterOutputStream();
-
-      long len = con.getContentLengthLong();
-      byte[] buffer = new byte[1024 * 64];
-      //is.available();
-      int n;
-      while ((n = cis.read(buffer)) > -1) {
-        bos.write(buffer, 0, n);
-        m += n;
-      }
-
-      System.out.println(m + "/" + len);
-
-      //cis.close();
-    } finally {
-      // This block executed no matter what.
-      if (cis != null) {
-        //System.out.println("Finally!");
-        cis.close();
-      }
-    }
-
-    return m;
-  }
 
 }
