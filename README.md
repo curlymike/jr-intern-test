@@ -5,8 +5,8 @@ project_files\src\main\resources\application.properties
 
 Скрипт с данными в файле script.sql
 
-Maven command line: __spring-boot:run -Drun.jvmArguments=-Dfile.encoding=UTF-8__
-(> mvn spring-boot:run -Drun.jvmArguments=-Dfile.encoding=UTF-8)
+Maven command line: __spring-boot:run -Drun.jvmArguments=-Dfile.encoding=UTF-8__  
+```> mvn spring-boot:run -Drun.jvmArguments=-Dfile.encoding=UTF-8```
 
 ## Ниже то, что очень хотелось реализовать, но не успел
 
